@@ -19,6 +19,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
+  margin-bottom: 15px;
 }
 
 .day {

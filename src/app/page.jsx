@@ -3,6 +3,7 @@
 import { diary } from "../diary";
 import { useState } from "react";
 import MonthYearDisplay from "@/components/MonthYearDisplay.jsx";
+import Days from "@/components/Days.jsx";
 
 export default function Home() {
   let currentDate = new Date();
@@ -82,19 +83,12 @@ export default function Home() {
         increment={incrementYear}
       />
 
-      <div id="day-container">
-        {currentMonthDays.map((d) => (
-          <div
-            style={{ background: day === d.day ? "lightblue" : "" }}
-            onClick={() => daySelected(d.day)}
-            className="day"
-            key={d.day}
-          >
-            <div className="heart" style={{ visibility: d.entry === "" ? 'hidden' : 'visible' }}>💌</div>
-            <div>{d.day}</div>
-          </div>
-        ))}
-      </div>
+      <Days
+        currentMonthDays={currentMonthDays}
+        day={day}
+        daySelected={daySelected}
+      />
+
       <form onSubmit={submitEntry}>
         <textarea
           onChange={(e) => setEntry(e.target.value)}
