@@ -56,12 +56,14 @@ export default function Home() {
 
   const daySelected = (day) => {
     setDay(day);
+    const currentDaysEntry = diary[year].months[monthIndex].days[day - 1].entry;
+    setEntry(currentDaysEntry);
   };
 
   const submitEntry = (e) => {
     e.preventDefault();
     diary[year].months[monthIndex].days[day - 1].entry = entry;
-    setEntry("");
+    setEntry(e.target.value);
   };
 
   return (
@@ -92,7 +94,7 @@ export default function Home() {
       <form onSubmit={submitEntry}>
         <textarea
           onChange={(e) => setEntry(e.target.value)}
-          placeholder={currentDaysEntry}
+          // placeholder={currentDaysEntry}
           value={entry}
         />
         <button id="submit-btn">Submit</button>
