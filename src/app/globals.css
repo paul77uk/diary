@@ -11,4 +11,39 @@ body {
   margin: auto;
   justify-content: space-between;
   width: 300px;
+  margin-bottom: 10px;
+}
+
+#day-container {
+  margin: 10px 20px;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.day {
+  border: 2px solid black;
+  padding: 15px 20px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  max-height: 20px;
+  flex-grow: 1;
+  border-radius: 10px;
+}
+
+input {
+  margin-top: 5px;
+  width: 99%;
+  height: 100px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+#submit-btn {
+  margin-top: 5px;
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 10px;
 }

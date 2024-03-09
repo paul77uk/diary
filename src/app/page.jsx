@@ -10,25 +10,29 @@ export default function Home() {
 
   const [monthIndex, setMonthIndex] = useState(currentMonthIndex);
   const [year, setYear] = useState(currentDate.getFullYear());
-
+  
   // console.log(monthIndex);
   console.log(diary)
   let currentYear = currentDate.getFullYear();
   let currentYearObjectIndex = diary.indexOf(
     diary.find((obj) => obj.year === currentYear)
-  );
-  let currentMonth = diary[year].months[monthIndex].month;
-  let currentMonthDays =
+    );
+    let currentMonth = diary[year].months[monthIndex].month;
+    let currentMonthDays =
     diary[year].months[monthIndex].days;
-  let currentDay =
+    let currentDay =
     diary[year].months[currentDate.getMonth()].days[
       currentDate.getDate() - 1
     ].day;
-  let currentDaysEntry =
+    const [day, setDay] = useState(currentDay);
+
+    let currentDaysEntry =
     diary[year].months[monthIndex].days[
-      currentDate.getDate() - 1
+      day - 1
     ].entry;
-  console.log(diary);
+    console.log(diary);
+
+    const [entry, setEntry] = useState(currentDaysEntry);
 
   const incrementMonth = () => {
     if (monthIndex < 11) {
@@ -54,6 +58,10 @@ export default function Home() {
     }
   };
 
+  const daySelected = (day) => {
+    setDay(day);
+  }
+
   return (
     <main>
       <h1>Diary</h1>
@@ -73,23 +81,15 @@ export default function Home() {
         increment={incrementYear}
       />
 
-      {/* year display
-      <div id="month-row">
-        <button onClick={decrementYear} disabled={year === 2000}>
-          {"<"}
-        </button>
-        <div className="month">{year}</div>
-        <button onClick={incrementYear} disabled={year === 3000}>
-          {">"}
-        </button>
-      </div> */}
-
-      {currentMonthDays.map((day) => (
-        <div key={day.day}>
-          <div>{day.day}</div>
-        </div>
-      ))}
-      <div>{currentDaysEntry}</div>
+      <div id="day-container">
+        {currentMonthDays.map((day) => (
+          <div onClick={() => daySelected(day.day)} className="day" key={day.day}>
+            <div>{day.day}</div>
+          </div>
+        ))}
+      </div>
+      <input value={currentDaysEntry}/>
+      <button id="submit-btn">Submit</button>
     </main>
   );
 }
