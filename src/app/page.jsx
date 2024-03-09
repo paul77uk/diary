@@ -10,29 +10,24 @@ export default function Home() {
 
   const [monthIndex, setMonthIndex] = useState(currentMonthIndex);
   const [year, setYear] = useState(currentDate.getFullYear());
-  
+
   // console.log(monthIndex);
-  console.log(diary)
+  console.log(diary);
   let currentYear = currentDate.getFullYear();
   let currentYearObjectIndex = diary.indexOf(
     diary.find((obj) => obj.year === currentYear)
-    );
-    let currentMonth = diary[year].months[monthIndex].month;
-    let currentMonthDays =
-    diary[year].months[monthIndex].days;
-    let currentDay =
-    diary[year].months[currentDate.getMonth()].days[
-      currentDate.getDate() - 1
-    ].day;
-    const [day, setDay] = useState(currentDay);
+  );
+  let currentMonth = diary[year].months[monthIndex].month;
+  let currentMonthDays = diary[year].months[monthIndex].days;
+  let currentDay =
+    diary[year].months[currentDate.getMonth()].days[currentDate.getDate() - 1]
+      .day;
+  const [day, setDay] = useState(currentDay);
 
-    let currentDaysEntry =
-    diary[year].months[monthIndex].days[
-      day - 1
-    ].entry;
-    console.log(diary);
+  let currentDaysEntry = diary[year].months[monthIndex].days[day - 1].entry;
+  console.log(diary);
 
-    const [entry, setEntry] = useState(currentDaysEntry);
+  const [entry, setEntry] = useState("");
 
   const incrementMonth = () => {
     if (monthIndex < 11) {
@@ -60,7 +55,13 @@ export default function Home() {
 
   const daySelected = (day) => {
     setDay(day);
-  }
+  };
+
+  const submitEntry = (e) => {
+    e.preventDefault();
+    diary[year].months[monthIndex].days[day - 1].entry = entry;
+    setEntry("");
+  };
 
   return (
     <main>
@@ -82,14 +83,21 @@ export default function Home() {
       />
 
       <div id="day-container">
-        {currentMonthDays.map((day) => (
-          <div onClick={() => daySelected(day.day)} className="day" key={day.day}>
-            <div>{day.day}</div>
+        {currentMonthDays.map((d) => (
+          <div
+            style={{ background: day === d.day ? "lightblue" : "" }}
+            onClick={() => daySelected(d.day)}
+            className="day"
+            key={d.day}
+          >
+            <div>{d.day}</div>
           </div>
         ))}
       </div>
-      <input value={currentDaysEntry}/>
-      <button id="submit-btn">Submit</button>
+      <form onSubmit={submitEntry}>
+        <input onChange={(e) => setEntry(e.target.value)} placeholder={currentDaysEntry} value={entry} />
+        <button id="submit-btn">Submit</button>
+      </form>
     </main>
   );
 }
