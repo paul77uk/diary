@@ -90,12 +90,17 @@ export default function Home() {
             className="day"
             key={d.day}
           >
+            <div className="heart" style={{ visibility: d.entry === "" ? 'hidden' : 'visible' }}>💌</div>
             <div>{d.day}</div>
           </div>
         ))}
       </div>
       <form onSubmit={submitEntry}>
-        <input onChange={(e) => setEntry(e.target.value)} placeholder={currentDaysEntry} value={entry} />
+        <textarea
+          onChange={(e) => setEntry(e.target.value)}
+          placeholder={currentDaysEntry}
+          value={entry}
+        />
         <button id="submit-btn">Submit</button>
       </form>
     </main>

@@ -25,20 +25,22 @@ body {
 .day {
   border: 2px solid black;
   padding: 15px 20px;
-  justify-content: center;
+  justify-content: end;
   align-items: center;
   display: flex;
+  flex-direction: column;
   max-height: 20px;
-  flex-grow: 1;
+  flex-shrink: 1;
   border-radius: 10px;
 }
 
-input {
+textarea {
   margin-top: 5px;
   width: 99%;
   height: 100px;
   border: 1px solid black;
   border-radius: 10px;
+  resize: none;
 }
 
 #submit-btn {
@@ -47,3 +49,4 @@ input {
   border: 2px solid black;
   border-radius: 10px;
 }
+

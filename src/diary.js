@@ -59,7 +59,7 @@ for (let year of diary) {
     for (let i = 1; i <= numberOfDays; i++) {
       month.days.push({
         day: i,
-        entry: `Entry for ${month.month} ${i}, ${year.year}.`,
+        entry: "",
       });
     }
   }
