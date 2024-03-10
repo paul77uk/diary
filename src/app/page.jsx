@@ -33,24 +33,40 @@ export default function Home() {
   const incrementMonth = () => {
     if (monthIndex < 11) {
       setMonthIndex(monthIndex + 1);
+      const newMonthIndex = monthIndex + 1
+      const currentDaysEntry =
+        diary[year].months[newMonthIndex].days[day - 1].entry;
+      setEntry(currentDaysEntry);
     }
   };
 
   const decrementMonth = () => {
     if (monthIndex > 0) {
       setMonthIndex(monthIndex - 1);
+      const newMonthIndex = monthIndex - 1;
+      const currentDaysEntry =
+        diary[year].months[newMonthIndex].days[day - 1].entry;
+      setEntry(currentDaysEntry);
     }
   };
 
   const incrementYear = () => {
     if (year < 3000) {
       setYear(year + 1);
+      const newYearIndex = year + 1;
+      const currentDaysEntry =
+        diary[newYearIndex].months[monthIndex].days[day - 1].entry;
+      setEntry(currentDaysEntry);
     }
   };
 
   const decrementYear = () => {
     if (year > 2000) {
       setYear(year - 1);
+      const newYearIndex = year - 1;
+      const currentDaysEntry =
+        diary[newYearIndex].months[monthIndex].days[day - 1].entry;
+      setEntry(currentDaysEntry);
     }
   };
 
@@ -92,11 +108,7 @@ export default function Home() {
       />
 
       <form onSubmit={submitEntry}>
-        <textarea
-          onChange={(e) => setEntry(e.target.value)}
-          // placeholder={currentDaysEntry}
-          value={entry}
-        />
+        <textarea onChange={(e) => setEntry(e.target.value)} value={entry} />
         <button id="submit-btn">Submit</button>
       </form>
     </main>
